@@ -2,7 +2,6 @@
   Layout = "_Layout";
 }
 
-
 @using Registrar.Models;
 @model List<Registrar.Models.Student>;
 
@@ -15,10 +14,40 @@
 }
 else
 {
-  @foreach (Student student in Model)
+  @using (Html.BeginForm())
   {
-    <p>@Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId})</p>
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" /></p>
   }
+  <table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>Student Id
+        </th>
+        <th>
+            @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th></th>
+    </tr>
+    
+  @foreach (Student student in @Model)
+  {
+    <tr>
+      <td>
+        @Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId})
+      </td>
+      <td>
+        @student.StudentId
+      </td>
+      <td>
+        @student.EnrollmentDate
+      </td>
+    </tr>
+  }
+  </table>
 }
 
 <p>@Html.ActionLink("Add new student", "Create")</p>

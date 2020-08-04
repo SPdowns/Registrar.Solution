@@ -14,6 +14,9 @@
   @Html.Label("StudentSocialScore", "Student Social Score")<br>
   @Html.TextBoxFor(model => model.StudentSocialScore)<br>
 
+  @Html.Label("EnrollmentDate", "Enrollment Date")<br>
+  @Html.TextBoxFor(model => model.EnrollmentDate, new { @type = "date"})<br>
+
   <input type="submit" value="Add new Student" /><br>
 }
 

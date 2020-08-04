@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Registrar.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,9 +17,32 @@ namespace Registrar.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string sortOrder, string searchString)
     {
-      return View(_db.Students.OrderBy(student => student.StudentId).ToList());
+      ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder)? "name_desc" : "";
+      ViewBag.DateSortParm = sortOrder=="Date" ? "date_desc" : "Date";
+      var students = from student in _db.Students
+                    select student;
+      if (!String.IsNullOrEmpty(searchString))
+      {
+          students = students.Where(student => student.StudentName.Contains(searchString));
+      }
+      switch (sortOrder)
+      {
+        case "name_desc":
+          students = students.OrderByDescending(student => student.StudentName);
+          break;
+        case "Date":
+          students = students.OrderBy(student => student.EnrollmentDate);
+          break;
+        case "date_desc":
+          students = students.OrderByDescending(student => student.EnrollmentDate);
+          break;
+        default:
+          students = students.OrderBy(student => student.StudentName);
+          break;
+      }
+      return View(students.ToList());
     }
 
     public ActionResult Create()
