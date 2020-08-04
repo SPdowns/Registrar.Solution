@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Student
+
+<h1>Add a new Student</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.StudentName)
+  @Html.TextBoxFor(model => model.StudentName)
+
+  @Html.LabelFor(model => model.StudentSocialScore)
+  @Html.TextBoxFor(model => model.StudentSocialScore)
+
+  <imput type="submit" value="Add new Student" />
+}
+
+<p>@Html.ActionLink("Show all Students", "Index")</p>
+

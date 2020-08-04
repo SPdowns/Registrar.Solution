@@ -2,6 +2,7 @@
   Layout = "_Layout";
 }
 
+
 @using Registrar.Models;
 @model List<Registrar.Models.Student>;
 
@@ -12,10 +13,12 @@
 {
   <h5>There are no students enrolled</h5>
 }
-
-@foreach (Student Student in Model)
+else
 {
-  <p>@Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId})</p>
+  @foreach (Student student in Model)
+  {
+    <p>@Html.ActionLink($"{student.StudentName}", "Details", new { id = student.StudentId})</p>
+  }
 }
 
 <button>@Html.ActionLink("Home", "Index", "Home")</button>
