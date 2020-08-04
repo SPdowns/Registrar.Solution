@@ -8,15 +8,15 @@
 
 <h3>@Html.DisplayNameFor(model => model.Number): @Html.DisplayFor(model => model.Number)</h3>
 
-<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3><br>
 
 @if(@Model.Students.Count == 0)
 {
-  <p>This course does not beling to any students just yet!~</p>
+  <p>This course does not have any students just yet!</p>
 }
 else
 {
-  <h2>Student is currently enrolled to:</h2>
+  <h2>Students currently enrolled:</h2>
   <ul>
   @foreach(var join in Model.Students)
   { 
@@ -30,8 +30,8 @@ else
 </ul>
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
 <p>@Html.ActionLink("Add Student", "AddStudent", new { id = Model.CourseId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
 

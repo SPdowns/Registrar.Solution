@@ -28,9 +28,9 @@ namespace Registrar.Controllers
     public ActionResult Create(Course course, int StudentId)
     {
       _db.Courses.Add(course);
-      if (StudentId == 0)
+      if (StudentId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() {StudentId = StudentId, CourseId = course.CourseId});
+        _db.CourseStudent.Add(new CourseStudent() { StudentId = StudentId, CourseId = course.CourseId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -43,12 +43,14 @@ namespace Registrar.Controllers
       .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
+
     public ActionResult Edit(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View(thisCourse);
     }
+
     [HttpPost]
     public ActionResult Edit(Course course, int StudentId)
     {
@@ -60,11 +62,13 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     public ActionResult Delete(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
+
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
@@ -73,6 +77,7 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     [HttpPost]
     public ActionResult DeleteStudent(int joinId)
     {
@@ -81,12 +86,14 @@ namespace Registrar.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     public ActionResult AddStudent(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
       ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       return View(thisCourse);
     }
+
     [HttpPost]
     public ActionResult AddStudent(Student student, int CourseId)
     {

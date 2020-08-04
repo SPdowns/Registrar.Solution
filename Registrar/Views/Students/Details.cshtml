@@ -4,14 +4,15 @@
 
 @model Registrar.Models.Student
 
-<h1>Student Details Pages</h1>
+<h1>Student Details</h1>
 <hr/>
 
-<h2>@Html.DisplayFor(model => model.StudentName) : @Html.DisplayFor(model => model.StudentId)</h2>
+<h2>Student Name: @Html.DisplayFor(model => model.StudentName)</h2>
+<h3>Student ID: @Html.DisplayFor(model => model.StudentId)</h3>
 
-<h3>Social Score: @Html.DisplayFor(model => model.StudentSocialScore)</h3>
+<h3>Social Score: @Html.DisplayFor(model => model.StudentSocialScore)</h3><br>
 
-<h3>Courses:</h3>
+<h2>Courses:</h2>
 @if (@Model.Courses.Count == 0)
 {
   <p>No enrolled courses</p>
@@ -19,25 +20,18 @@
 else
 {
   <ul>
-  @foreach (var join in Model.Courses)
-  {
-    <li>@join.Course.Name</li>
-  }
+    @foreach(var join in Model.Courses)
+    {
+      <li>@join.Course.Name</li>
+      @using (Html.BeginForm("DeleteCourse", "Students"))
+      {
+        @Html.Hidden("joinId", @join.CourseStudentId)
+        <input type="submit" value="Delete"/>
+      }
+    }
   </ul>
 }
-
-<ul>
-  @foreach(var join in Model.Courses)
-  {
-    <li>@join.Course.Name</li>
-    @using (Html.BeginForm("DeleteCourse", "Students"))
-    {
-      @Html.Hidden("joinId", @join.CourseStudentId)
-      <input type="submit" value="Delete"/>
-    }
-  }
-</ul>
-
+<p>@Html.ActionLink("Edit", "Edit", new { id = @Model.StudentId })</p>
 <p>@Html.ActionLink("Back to Students", "Index")</p>
 <p>@Html.ActionLink("All Courses", "Index", "Courses")</p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
