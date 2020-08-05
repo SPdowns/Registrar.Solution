@@ -19,26 +19,6 @@
 * in MySql Workbench select _Data Import/Restore_ from the Administration tab
 * in import options select _Import from Self-Contained File_, and navigate to megan_hepner.sql in the root directory of this project
 * The following is the code snippet from the megan_hepner.sql file <br>
-
-CREATE DATABASE  IF NOT EXISTS `megan_hepner`;
-USE `megan_hepner`;
-
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE `clients` (
-  `ClientId` int NOT NULL AUTO_INCREMENT,
-  `ClientPhone` int DEFAULT NULL,
-  `StylistId` int DEFAULT '0',
-  `Name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ClientId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `stylists`;
-CREATE TABLE `stylists` (
-  `StylistId` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
-  `Details` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`StylistId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 * click _Start Import_
 * in your code editor create a .gitignore file and store the bin and obj folders in .gitignore
 * navigate to the HairSalon directory and type dotnet build in the command line to compile the code
@@ -49,20 +29,18 @@ __
 
 | Behavior    | Input | Output |
 | :---------- | ----- | -----: |
-| Program can create a student object | none | none |
-| Student object holds student name and date of enrollment | none | none |
-| Program can create a Course object | none | none |
-| Course object holds course name and number | none | none |
-| Student => Course reflect many to many relationship | none | none |
-
+| Program can create a student object
+| Student object holds student name and date of enrollment
+| Program can create a Course object
+| Course object holds course name and number
+| Student => Course reflect many to many relationship 
+| Whening a student is able to add a course, there should be checkboxes that allow multiple courses to be added at once
 
 ## Known Bugs
 
 _No known bugs_
 
 ## **❤️Contributors**
-* Ian Scott
-* Christine Augustine
 * Megan Hepner
 * Sean Downs
 

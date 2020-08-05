@@ -1,0 +1,18 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Professor
+
+<h2>Are you sure you want to delete this professor?</h2>
+
+<h3>@Html.DisplayNameFor(model => model.ProfessorName) : @Html.DisplayFor(model => model.ProfessorName)</h3>
+<h3>@Html.DisplayNameFor(model => model.Tenure) : @Html.DisplayFor(model => model.Tenure)</h3>
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+}
+
+<p>@Html.ActionLink("Add new Course", "Create")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Students", "Index", "Students")</p>
