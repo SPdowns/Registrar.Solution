@@ -15,6 +15,8 @@ namespace Registrar.Models
     public string Description { get; set; }
     public int ProfessorId { get; set; } 
     public virtual Professor Professor { get; set; }
+    public int DepartmentId { get; set; }
+    public virtual Department Department { get; set; }
     public ICollection<CourseStudent> Students { get; set;}
   }
 }

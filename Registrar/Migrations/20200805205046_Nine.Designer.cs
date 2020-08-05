@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Registrar.Models;
 
 namespace Registrar.Migrations
 {
     [DbContext(typeof(RegistrarContext))]
-    partial class RegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20200805205046_Nine")]
+    partial class Nine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Registrar.Migrations
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DepartmentId");
+                    b.Property<int?>("DepartmentId");
 
                     b.Property<string>("Description");
 
@@ -102,7 +104,7 @@ namespace Registrar.Migrations
                     b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DepartmentId");
+                    b.Property<int?>("DepartmentId");
 
                     b.Property<DateTime>("EnrollmentDate");
 
@@ -119,10 +121,9 @@ namespace Registrar.Migrations
 
             modelBuilder.Entity("Registrar.Models.Course", b =>
                 {
-                    b.HasOne("Registrar.Models.Department", "Department")
+                    b.HasOne("Registrar.Models.Department")
                         .WithMany("Courses")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DepartmentId");
 
                     b.HasOne("Registrar.Models.Professor", "Professor")
                         .WithMany()
@@ -153,10 +154,9 @@ namespace Registrar.Migrations
 
             modelBuilder.Entity("Registrar.Models.Student", b =>
                 {
-                    b.HasOne("Registrar.Models.Department", "Department")
+                    b.HasOne("Registrar.Models.Department")
                         .WithMany("Students")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DepartmentId");
                 });
 #pragma warning restore 612, 618
         }
