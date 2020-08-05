@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Registrar.Models.Professor
+
+<h1>Add a new Professor</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.ProfessorName) <br>
+  @Html.TextBoxFor(model => model.ProfessorName) <br>
+  @Html.LabelFor(model => model.Tenure) <br>
+  @Html.TextBoxFor(model => model.Tenure) <br>
+}
