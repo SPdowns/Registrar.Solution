@@ -18,6 +18,9 @@
   @Html.LabelFor(model => model.Description) <br>
   @Html.TextBoxFor(model => model.Description) <br><br>
 
+  @Html.LabelFor(model => model.Department)<br>
+  @Html.DropDownList("DepartmentId")
+
   <input type="submit" value="Add Course" /><br>
 }
 

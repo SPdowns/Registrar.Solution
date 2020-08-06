@@ -21,7 +21,7 @@ namespace Registrar.Controllers
     }
     public ActionResult Create()
     {
-      // ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
       ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "Name");
       return View();
     }
@@ -30,10 +30,10 @@ namespace Registrar.Controllers
     public ActionResult Create(Course course, int StudentId)
     {
       _db.Courses.Add(course);
-      // if (StudentId != 0)
-      // {
-      //   _db.CourseStudent.Add(new CourseStudent() { StudentId = StudentId, CourseId = course.CourseId });
-      // }
+      if (StudentId != 0)
+      {
+        _db.CourseStudent.Add(new CourseStudent() { StudentId = StudentId, CourseId = course.CourseId });
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
