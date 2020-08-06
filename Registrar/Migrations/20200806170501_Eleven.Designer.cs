@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Registrar.Models;
 
 namespace Registrar.Migrations
 {
     [DbContext(typeof(RegistrarContext))]
-    partial class RegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20200806170501_Eleven")]
+    partial class Eleven
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,8 +86,6 @@ namespace Registrar.Migrations
                     b.Property<int>("ProfessorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CourseId");
-
                     b.Property<int>("DepartmentId");
 
                     b.Property<string>("ProfessorName");
@@ -127,7 +127,7 @@ namespace Registrar.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Registrar.Models.Professor", "Professor")
-                        .WithMany("Courses")
+                        .WithMany()
                         .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

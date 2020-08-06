@@ -51,11 +51,7 @@ namespace Registrar.Controllers
     // [HttpPost]
     // public ActionResult Edit(Student student, int CourseId)
     // {
-    //   if (CourseId !=0)
-    //   {
-    //     _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
-    //   }
-    //   _db.Entry(student).State = EntityState.Modified;
+    //   _db.Entry(department).State = EntityState.Modified;
     //   _db.SaveChanges();
     //   return RedirectToAction("Index");
     // }

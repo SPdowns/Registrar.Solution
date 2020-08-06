@@ -4,13 +4,11 @@ font-size: 70px;
 }
 
 body {
-  background-image: url(../img/Classroom.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background-color: chocolate;
   padding: 50px;
   font-family: 'Montserrat', sans-serif;
   font-size: 25px;
+  text-align: center;
 }
 
 p {

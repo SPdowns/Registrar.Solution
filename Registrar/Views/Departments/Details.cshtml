@@ -1,4 +1,4 @@
-@{
+@* @{
   Layout = "_Layout";
 }
 
@@ -21,12 +21,11 @@ else
   <ul>
   @foreach(Course course in @Model.Courses)
   { 
-    @* <li>@HtmlActionLink(@course.Name, "Details", "Courses", new { id = course.CourseId })</li>
-    @using (Html.BeginForm("DeleteStudent", "Courses")) *@
+    <li>@HtmlActionLink(@course.Name, "Details", "Courses", new { id = course.CourseId })</li>
   }
 </ul>
 }
 
 <p>@Html.ActionLink("Add a Course to this Department", "Create", "Courses")</p>
-<p>@Html.ActionLink("Delete this Course", "Delete", new { id = Model.DepartmentId})</p>
-<p>@Html.ActionLink("Back to Departments", "Index")</p>
+<p>@Html.ActionLink("Delete this Department", "Delete", new { id = Model.DepartmentId})</p>
+<p>@Html.ActionLink("Back to Departments", "Index")</p> *@
