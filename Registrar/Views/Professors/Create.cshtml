@@ -11,5 +11,10 @@
   @Html.LabelFor(model => model.ProfessorName) <br>
   @Html.TextBoxFor(model => model.ProfessorName) <br>
   @Html.LabelFor(model => model.Tenure) <br>
-  @Html.TextBoxFor(model => model.Tenure) <br>
+  @Html.CheckBoxFor(model => model.Tenure) <br>
+
+    <input type="submit" value="Add Professor" /><br>
 }
+
+<p>@Html.ActionLink("Show all Professors", "Index")</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

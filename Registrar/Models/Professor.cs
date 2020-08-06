@@ -10,7 +10,7 @@ namespace Registrar.Models
     public bool Tenure { get; set; }
     public int CourseId { get; set; }
     public List<Course> Courses { get; set; } 
-    public int DepartmentId { get; set; }
+    public int? DepartmentId { get; set; }
     public virtual Department Department { get; set; }
   
   }

@@ -2,7 +2,9 @@
   Layout = "_Layout";
 }
 
-@model Registrar.Models.Professor
+@using Registrar.Models;
+@model Registrar.Models.Professor;
+
 
 <h1>Professor Details</h1>
 <hr/>
@@ -10,5 +12,16 @@
 <h2>Professor Name: @Html.DisplayFor(model => model.ProfessorName)</h2>
 
 <h2>Courses Teaching: </h2>
-
-<h2>Professor Course: @Html.DisplayFor(model => model.Courses)</h2>
+@if (@Model.Courses.Count == 0)
+{
+  <h3>No courses are assigned</h3>
+}
+else
+{
+  <ul>
+    @foreach (Course course in @Model.Courses)
+    {
+      <li>Courses: @course.Name</li>
+    }
+  </ul>
+}
