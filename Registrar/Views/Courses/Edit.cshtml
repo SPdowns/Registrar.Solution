@@ -19,6 +19,12 @@
   @Html.LabelFor(model => model.Description)<br>
   @Html.EditorFor(model => model.Description)<br>
 
+  @Html.LabelFor(model => model.Department)<br>
+  @Html.DropDownList("DepartmentId")<br>
+
+  @Html.LabelFor(model => model.Professor)<br>
+  @Html.DropDownList("ProfessorId")<br>
+
   <input type="submit" value="Save" />
 }
 

@@ -48,40 +48,27 @@ namespace Registrar.Controllers
       return View(thisDepartment);
     }
 
-    // [HttpPost]
-    // public ActionResult Edit(Student student, int CourseId)
-    // {
-    //   if (CourseId !=0)
-    //   {
-    //     _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
-    //   }
-    //   _db.Entry(student).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Department department)
+    {
+      _db.Entry(department).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-  //   public ActionResult Delete(int id)
-  //   {
-  //     var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-  //     return View(thisStudent);
-  //   }
+    public ActionResult Delete(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      return View(thisDepartment);
+    }
 
-  //   [HttpPost, ActionName("Delete")]
-  //   public ActionResult DeleteConfirmed(int id)
-  //   {
-  //     var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-  //     _db.Students.Remove(thisStudent);
-  //     _db.SaveChanges();
-  //     return RedirectToAction("Index");
-  //   }
-
-  //   [HttpPost]
-  //   public ActionResult DeleteCourse(int joinId)
-  //   {
-  //     var joinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
-  //     _db.CourseStudent.Remove(joinEntry);
-  //     _db.SaveChanges();
-  //     return RedirectToAction("Index");
-  //   }
-  // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisDepartment = _db.Departments.FirstOrDefault(department => department.DepartmentId == id);
+      _db.Departments.Remove(thisDepartment);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+  }
 }

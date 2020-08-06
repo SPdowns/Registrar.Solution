@@ -1,0 +1,30 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Registrar.Models;
+@model Registrar.Models.Professor;
+
+
+<h1>Professor Details</h1>
+<hr/>
+
+<h2>Professor Name: @Html.DisplayFor(model => model.ProfessorName)</h2>
+
+<h2>Courses Teaching: </h2>
+@if (@Model.Courses.Count == 0)
+{
+  <h3>No courses are assigned</h3>
+}
+
+<ul>
+  @foreach (Course course in @Model.Courses)
+  {
+    <li>@Html.ActionLink(@course.Name, "Details", "Courses", new { id = course.CourseId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add a Course to this Professor", "Create", "Courses")</p>
+<p>@Html.ActionLink("Edit this Professor", "Edit", new { id = Model.ProfessorId })</p>
+<p>@Html.ActionLink("Delete this Professor", "Delete", new { id = Model.ProfessorId})</p>
+<p>@Html.ActionLink("Back to Professors", "Index")</p>

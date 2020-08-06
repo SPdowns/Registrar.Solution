@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Registrar.Models;
 
 namespace Registrar.Migrations
 {
     [DbContext(typeof(RegistrarContext))]
-    partial class RegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20200806173913_Twelve")]
+    partial class Twelve
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,7 @@ namespace Registrar.Migrations
                     b.Property<int>("CourseId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<int>("DepartmentId");
 
                     b.Property<string>("Description");
 
@@ -30,7 +32,7 @@ namespace Registrar.Migrations
 
                     b.Property<int>("Number");
 
-                    b.Property<int?>("ProfessorId");
+                    b.Property<int>("ProfessorId");
 
                     b.HasKey("CourseId");
 
@@ -64,15 +66,15 @@ namespace Registrar.Migrations
                     b.Property<int>("DepartmentId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CourseId");
+                    b.Property<int>("CourseId");
 
                     b.Property<string>("DepartmentDescription");
 
                     b.Property<string>("DepartmentName");
 
-                    b.Property<int?>("ProfessorId");
+                    b.Property<int>("ProfessorId");
 
-                    b.Property<int?>("StudentId");
+                    b.Property<int>("StudentId");
 
                     b.HasKey("DepartmentId");
 
@@ -84,9 +86,9 @@ namespace Registrar.Migrations
                     b.Property<int>("ProfessorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CourseId");
+                    b.Property<int>("CourseId");
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<int>("DepartmentId");
 
                     b.Property<string>("ProfessorName");
 
@@ -123,11 +125,13 @@ namespace Registrar.Migrations
                 {
                     b.HasOne("Registrar.Models.Department", "Department")
                         .WithMany("Courses")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Registrar.Models.Professor", "Professor")
                         .WithMany("Courses")
-                        .HasForeignKey("ProfessorId");
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Registrar.Models.CourseStudent", b =>
@@ -147,7 +151,8 @@ namespace Registrar.Migrations
                 {
                     b.HasOne("Registrar.Models.Department", "Department")
                         .WithMany("Professors")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Registrar.Models.Student", b =>

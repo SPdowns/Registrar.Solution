@@ -35,6 +35,7 @@ namespace Registrar
     {
       Professor thisProfessor = _db.Professors
       .Include(professor => professor.Department)
+      .Include(professor => professor.Courses)
       .FirstOrDefault(professor => professor.ProfessorId == id);
       return View(thisProfessor);
     }
@@ -42,6 +43,8 @@ namespace Registrar
     {
       var thisProfessor = _db.Professors.FirstOrDefault(professors => professors.ProfessorId == id);
       ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "CourseName");
+
       return View(thisProfessor);
     }
     [HttpPost]

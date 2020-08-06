@@ -21,9 +21,11 @@ namespace Registrar.Controllers
     }
     public ActionResult Create()
     {
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorName");
       return View();
     }
+
     [HttpPost]
     public ActionResult Create(Course course, int StudentId)
     {
@@ -47,17 +49,14 @@ namespace Registrar.Controllers
     public ActionResult Edit(int id)
     {
       var thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "StudentName");
+      ViewBag.DepartmentId = new SelectList(_db.Departments, "DepartmentId", "DepartmentName");
+      ViewBag.ProfessorId = new SelectList(_db.Professors, "ProfessorId", "ProfessorName");
       return View(thisCourse);
     }
 
     [HttpPost]
-    public ActionResult Edit(Course course, int StudentId)
+    public ActionResult Edit(Course course)
     {
-      if (StudentId == 0)
-      {
-        _db.CourseStudent.Add(new CourseStudent() {StudentId = StudentId, CourseId = course.CourseId});
-      }
       _db.Entry(course).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
