@@ -16,12 +16,15 @@
 {
   <h3>No courses are assigned</h3>
 }
-else
-{
-  <ul>
-    @foreach (Course course in @Model.Courses)
-    {
-      <li>Courses: @course.Name</li>
-    }
-  </ul>
-}
+
+<ul>
+  @foreach (Course course in @Model.Courses)
+  {
+    <li>@Html.ActionLink(@course.Name, "Details", "Courses", new { id = course.CourseId })</li>
+  }
+</ul>
+
+<p>@Html.ActionLink("Add a Course to this Professor", "Create", "Courses")</p>
+<p>@Html.ActionLink("Edit this Professor", "Edit", new { id = Model.ProfessorId })</p>
+<p>@Html.ActionLink("Delete this Professor", "Delete", new { id = Model.ProfessorId})</p>
+<p>@Html.ActionLink("Back to Professors", "Index")</p>
