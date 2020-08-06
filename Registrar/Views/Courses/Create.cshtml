@@ -8,7 +8,6 @@
 
 @using (Html.BeginForm())
 {
-  //accessed by Department add course.... needs to be able to assign this.DepartmentId to this course
   @Html.LabelFor(model => model.Name) <br>
   @Html.TextBoxFor(model => model.Name) <br>
 
@@ -19,7 +18,10 @@
   @Html.TextBoxFor(model => model.Description) <br><br>
 
   @Html.LabelFor(model => model.Department)<br>
-  @Html.DropDownList("DepartmentId")
+  @Html.DropDownList("DepartmentId")<br>
+
+  @Html.LabelFor(model => model.Professor)<br>
+  @Html.DropDownList("ProfessorId")<br>
 
   <input type="submit" value="Add Course" /><br>
 }
